@@ -21,10 +21,19 @@
 </p>
 <p>Phone: <%= @profile.phone %></p>
 
+<p>
+  <strong>Companies:</strong>
+    <% @business_profiles.each do |business_profile| %>
+      <p><%= link_to business_profile.name, business_profile_path(business_profile) %></p>
+    <% end %>
+</p>
+
+
 
 <% if current_user.profile == @profile %>
 	<%= link_to 'Edit my profile', edit_profile_path(@profile)	 %>
 <% end %>
 
+<%= link_to 'Create your business profile', new_business_profile_path %>
 
 
