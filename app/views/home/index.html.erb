@@ -3,10 +3,6 @@
 <h1>Aura Creative</h1>
 <h3>COWORKING & EVENT SPACE</h3>
 
-<%= image_tag 'elephant.jpg', alt: 'This is a picture of an elephant', title: 'This is an elephant', class: 'img-thumbnail img-circle' %>
-
-<a href="<%= asset_path 'elephant.jpg' %>"></a>
-
 <% if user_signed_in? %>
 	<p>Your email address is <%= current_user.email %></p>
 	<% if current_user.profile %>
@@ -15,5 +11,23 @@
 		<%= link_to "Create your profile", new_profile_path, class: 'btn btn-primary' %>
 	<% end %>
 <% end %>
+<h3>Upcoming Events</h3>
+<div class="row">
+  <div class="col-md-4">
+    <% @events.each do |event| %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= link_to event.name, event %></h3>
+        </div>
+        <div class="panel-body">
+        <p><%= event.description %></p>
+        <p><strong>Location: </strong><%= event.location %></p>
+        <p><strong>Starts: </strong><%= event.starts.strftime('%l:%m%P %d %b %Y') %></p>
+        <p><strong>Ends: </strong><%= event.ends.strftime('%l:%m%P %d %b %Y') %></p>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
 
 

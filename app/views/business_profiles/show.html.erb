@@ -25,6 +25,13 @@
   <%= @business_profile.website_link %>
 </p>
 
+<ul>
+  <% @business_profile.tag_list.each do |tag| %>
+    <li><%= link_to tag, business_profiles_path(tag: tag) %></li>
+  <% end %>
+</ul>
+
+
 <h3>People in this business</h3>
 <% @users.each do |user| %>
   <p><%= user.profile.name %></p>
